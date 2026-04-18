@@ -1,4 +1,4 @@
-name: Build Dylib
+name: Build
 on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
@@ -7,16 +7,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Theos
-        uses: BoundlessFocus/setup-theos@v1.1
-
-      - name: Build Tweak
+      - name: Install Theos
         run: |
-          export THEOS=$GITHUB_WORKSPACE/theos
+          bash -c "$(curl -fsSL https://githubusercontent.com)"
+          echo "THEOS=/Users/runner/theos" >> $GITHUB_ENV
+
+      - name: Build Dylib
+        run: |
           make package FINALPACKAGE=1
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: MiMenuFF-Dylib
-          path: .theos/obj/debug/MiMenuFF.dylib
+          path: .theos/obj/*.dylib

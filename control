@@ -1,0 +1,7 @@
+Package: com.tu.menu.ff
+Name: MiMenuFF
+Version: 1.0
+Architecture: iphoneos-arm
+Description: Menu visual para FF
+Author: TuNombre
+Section: Tweaks

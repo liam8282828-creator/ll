@@ -9,8 +9,8 @@ jobs:
 
       - name: Install Theos
         run: |
-          bash -c "$(curl -fsSL https://githubusercontent.com)"
-          echo "THEOS=/Users/runner/theos" >> $GITHUB_ENV
+          git clone --recursive https://github.com ~/theos
+          echo "THEOS=~/theos" >> $GITHUB_ENV
 
       - name: Build Dylib
         run: |
